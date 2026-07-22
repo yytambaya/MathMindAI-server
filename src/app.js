@@ -19,6 +19,10 @@ import { env } from './config/env.js';
 
 const app = express();
 
+// Required on Vercel (and other reverse proxies) so express-rate-limit
+// can trust X-Forwarded-For when identifying clients.
+app.set('trust proxy', 1);
+
 app.use(helmet());
 app.use(cors({ origin: env.corsOrigin, credentials: true }));
 app.use(express.json({ limit: '1mb' }));
