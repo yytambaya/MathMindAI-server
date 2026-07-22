@@ -34,6 +34,10 @@ app.use((req, res, next) => {
   next();
 });
 
+app.get('/', (req, res) => {
+  res.json({ success: true, message: 'MathMind AI API is running', health: '/api/health' });
+});
+
 app.get('/api/health', (req, res) => {
   res.json({ success: true, message: 'MathMind AI API is running', timestamp: new Date().toISOString() });
 });
